@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 50% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 246 80% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 45 93% 65%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+}
+
+/* 游戏特定样式 */
+.map-path {
+  position: absolute;
+  height: 6px;
+  background-color: #d1d5db; /* 灰色路径 */
+  z-index: 1;
+  border-radius: 3px;
+}
+
+.map-path-completed {
+  background-color: #6366f1; /* 完成的路径使用主题色 */
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+.map-node {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+}
+
+.map-node:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  animation: wiggle 0.5s ease-in-out;
+}
+
+.map-node-unlocked {
+  background-color: white;
+  border: 3px solid #6366f1;
+  color: #6366f1;
+}
+
+.map-node-completed {
+  background-color: #6366f1;
+  border: 3px solid #6366f1;
+  color: white;
+}
+
+.map-node-locked {
+  background-color: #f3f4f6;
+  border: 3px solid #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 游戏卡片悬停效果 */
+.game-card {
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+  border-width: 2px;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 儿童友好的按钮样式 */
+.btn-kid {
+  @apply rounded-xl font-bold py-3 px-6 shadow-kid transition-all duration-200 transform;
+}
+
+.btn-kid:hover {
+  @apply shadow-kid-lg -translate-y-1;
+}
+
+.btn-kid:active {
+  @apply shadow-kid translate-y-0;
+}
+
+/* 儿童友好的卡片样式 */
+.card-kid {
+  @apply rounded-2xl shadow-kid border-2 overflow-hidden transition-all duration-200;
+}
+
+.card-kid:hover {
+  @apply shadow-kid-lg;
+}
+
+/* 动画效果 */
+.animate-pop {
+  animation: pop 0.3s ease-in-out;
+}
+
+/* 彩色背景 */
+.bg-kid-gradient {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.bg-kid-gradient-purple {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+}
+
+.bg-kid-gradient-yellow {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.bg-kid-gradient-green {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+}
+
+.bg-kid-gradient-pink {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+}
+
+/* 彩色边框 */
+.border-rainbow {
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #6366f1, #fbbf24, #34d399, #f472b6) 1;
+}
+
